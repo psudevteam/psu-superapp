@@ -23,6 +23,7 @@
   },
   "private": true,
   "dependencies": {
+    "@hookform/resolvers": "^3.3.2",
     "@nx/next": "16.10.0",
     "@prisma/client": "^5.4.1",
     "@swc/helpers": "~0.5.2",
@@ -32,8 +33,11 @@
     "next": "^13.5.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.48.2",
     "react-native": "0.72.4",
-    "tslib": "^2.3.0"
+    "react-router-native": "^6.18.0",
+    "tslib": "^2.3.0",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@babel/core": "^7.14.5",
