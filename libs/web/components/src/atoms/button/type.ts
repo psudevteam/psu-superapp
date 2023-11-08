@@ -4,6 +4,13 @@ export type TButton = DetailedHTMLProps<
   HTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
 > & {
-  variant?: 'success' | 'warning' | 'error';
+  variant?:
+    | 'success'
+    | 'warning'
+    | 'error'
+    | 'cancel'
+    | 'primary'
+    | 'secondary';
   size?: 'sm' | 'md' | 'lg';
+  loading?: 'true' | 'false';
 };

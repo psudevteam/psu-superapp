@@ -1,6 +1,28 @@
 import { FC, ReactElement } from 'react';
 import { TLabel } from './type';
+import { clsx } from 'clsx';
 
 export const Label: FC<TLabel> = (props): ReactElement => {
-  return <label {...props}>{props.children}</label>;
+  const className = clsx(
+    'flex gap-x-1 text-gray-500',
+    {
+      'text-sm': props.size === 'sm',
+      'text-base': props.size === 'md',
+      'text-lg': props.size === 'lg',
+    },
+    {
+      'text-gray-400 cursor-not-allowed opacity-50': props.disabled,
+    }
+  );
+
+  return (
+    <label data-testid="label" className={className} {...props}>
+      {props.children}
+      {props.required && (
+        <span data-testid="required" className="text-red-700">
+          *
+        </span>
+      )}
+    </label>
+  );
 };

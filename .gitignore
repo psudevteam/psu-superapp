@@ -133,3 +133,4 @@ cache/
 
 
 apps/mobile-e2e/artifacts
+.nx/cache

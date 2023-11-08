@@ -4,6 +4,7 @@ export type TLabel = DetailedHTMLProps<
   HTMLAttributes<HTMLLabelElement>,
   HTMLLabelElement
 > & {
-  variant?: 'success' | 'warning' | 'error';
+  required?: boolean;
   size?: 'sm' | 'md' | 'lg';
+  disabled?: boolean;
 };
