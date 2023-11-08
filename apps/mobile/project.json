@@ -5,8 +5,8 @@
   "projectType": "application",
   "targets": {
     "start": {
-      "executor": "@nx/react-native:start",
-      "dependsOn": ["ensure-symlink", "sync-deps", "pod-install"],
+      "executor": "@nx/expo:start",
+      "dependsOn": ["ensure-symlink", "sync-deps"],
       "options": {
         "port": 8081
       }
@@ -18,64 +18,68 @@
       }
     },
     "run-ios": {
-      "executor": "@nx/react-native:run-ios",
-      "dependsOn": ["ensure-symlink", "sync-deps", "pod-install"],
-      "options": {}
-    },
-    "bundle-ios": {
-      "executor": "@nx/react-native:bundle",
-      "dependsOn": ["ensure-symlink"],
-      "outputs": ["{options.bundleOutput}"],
+      "executor": "@nx/expo:run",
+      "dependsOn": ["ensure-symlink", "sync-deps"],
       "options": {
-        "entryFile": "src/main.tsx",
-        "platform": "ios",
-        "bundleOutput": "dist/apps/mobile/ios/main.jsbundle"
+        "platform": "ios"
       }
     },
     "run-android": {
-      "executor": "@nx/react-native:run-android",
+      "executor": "@nx/expo:run",
       "dependsOn": ["ensure-symlink", "sync-deps"],
-      "options": {}
-    },
-    "build-android": {
-      "executor": "@nx/react-native:build-android",
-      "outputs": [
-        "{projectRoot}/android/app/build/outputs/bundle",
-        "{projectRoot}/android/app/build/outputs/apk"
-      ],
-      "dependsOn": ["ensure-symlink", "sync-deps"],
-      "options": {}
-    },
-    "build-ios": {
-      "executor": "@nx/react-native:build-ios",
-      "outputs": ["{projectRoot}/ios/build/Build"],
-      "dependsOn": ["ensure-symlink", "sync-deps", "pod-install"],
-      "options": {}
-    },
-    "pod-install": {
-      "executor": "@nx/react-native:pod-install",
-      "options": {}
-    },
-    "bundle-android": {
-      "executor": "@nx/react-native:bundle",
-      "dependsOn": ["ensure-symlink"],
-      "outputs": ["{options.bundleOutput}"],
       "options": {
-        "entryFile": "src/main.tsx",
-        "platform": "android",
-        "bundleOutput": "dist/apps/mobile/android/main.jsbundle"
+        "platform": "android"
       }
     },
+    "build": {
+      "executor": "@nx/expo:build",
+      "options": {}
+    },
+    "submit": {
+      "executor": "@nx/expo:submit",
+      "options": {}
+    },
+    "build-list": {
+      "executor": "@nx/expo:build-list",
+      "options": {}
+    },
     "sync-deps": {
-      "executor": "@nx/react-native:sync-deps",
+      "executor": "@nx/expo:sync-deps",
       "options": {}
     },
     "ensure-symlink": {
-      "executor": "@nx/react-native:ensure-symlink",
+      "executor": "@nx/expo:ensure-symlink",
       "options": {}
     },
+    "prebuild": {
+      "executor": "@nx/expo:prebuild",
+      "dependsOn": ["ensure-symlink", "sync-deps"],
+      "options": {}
+    },
+    "install": {
+      "executor": "@nx/expo:install",
+      "options": {}
+    },
+    "update": {
+      "executor": "@nx/expo:update",
+      "options": {}
+    },
+    "export": {
+      "executor": "@nx/expo:export",
+      "dependsOn": ["ensure-symlink", "sync-deps"],
+      "options": {
+        "platform": "all",
+        "outputDir": "../../dist/apps/mobile"
+      }
+    },
+    "export-web": {
+      "executor": "@nx/expo:export",
+      "options": {
+        "bundler": "metro"
+      }
+    },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["apps/mobile/**/*.{ts,tsx,js,jsx}"]

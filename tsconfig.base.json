@@ -23,7 +23,7 @@
         "libs/mobile/components/src/index.ts"
       ],
       "@psu-superapp/mobile-modules": ["libs/mobile/modules/src/index.ts"],
-      "@psu-superapp/mobile-routers": ["libs/mobile/routers/src/index.tsx"],
+      "@psu-superapp/mobile-routers": ["libs/mobile/routers/src/index.ts"],
       "@psu-superapp/mobile-services": ["libs/mobile/services/src/index.ts"],
       "@psu-superapp/mobile/components": ["mobile/components/src/index.ts"],
       "@psu-superapp/web-components": ["libs/web/components/src/index.ts"],
