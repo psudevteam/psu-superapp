@@ -5,7 +5,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     android-nixpkgs.url = "github:tadfisher/android-nixpkgs";
     android-nixpkgs.inputs.nixpkgs.follows = "nixpkgs";
-
     utils.url = "github:numtide/flake-utils";
   };
 
@@ -26,9 +25,9 @@
         # react-native dependencies versions
         nodejsVersion = 18;
         javaVersion = 11;
-        androidBuildToolsVersion = "33.0.0";
-        androidPlatformsVersion = 33;
-        androidNDKVersion = "23.1.7779620";
+        androidBuildToolsVersion = "34.0.0";
+        androidPlatformsVersion = 34;
+        androidNDKVersion = "26.1.10909125";
 
         # references https://gist.github.com/mrk-han/66ac1a724456cadf1c93f4218c6060ae
         createEmulator = pkgs:
@@ -66,7 +65,6 @@
               s.platform-tools
               s.cmdline-tools-latest
               s.tools
-              s.patcher-v4
               s.extras-google-google-play-services
               s.emulator
               # specified android sdk package version

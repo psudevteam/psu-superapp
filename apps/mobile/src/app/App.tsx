@@ -1,35 +1,15 @@
-/* eslint-disable jsx-a11y/accessible-emoji */
-import React, { useRef, useState } from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-  TouchableOpacity,
-  Linking,
-} from 'react-native';
-import Svg, { Path } from 'react-native-svg';
+import { FC, ReactElement } from 'react';
+import { SafeAreaView, View, Text, StatusBar } from 'react-native';
+import { NeoButton } from '@psu-superapp/mobile-components';
 
-import { NativeWindStyleSheet } from 'nativewind';
-
-NativeWindStyleSheet.setOutput({
-  default: 'native',
-});
-
-export const App = () => {
+export const App: FC = (): ReactElement => {
   return (
     <>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar />
       <SafeAreaView>
-        <View className="flex flex-col bg-blue-400">
-          <Text className="text-3xl font-bold text-center text-blue-400">
-            Anjay Mabar
-          </Text>
-          <Text className="text-3xl font-bold text-center text-blue-400">
-            Waduh
-          </Text>
+        <View>
+          <Text>Anjay Mabar</Text>
+          <NeoButton title="Login" />
         </View>
       </SafeAreaView>
     </>
