@@ -11,6 +11,57 @@
       "options": {
         "lintFilePatterns": ["libs/web/components/**/*.{ts,tsx,js,jsx}"]
       }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "options": {
+        "passWithNoTests": true,
+        "devServerTarget": "web-components:serve",
+        "setupFile": "libs/web/components/src/vitest.setup.ts"
+      }
+    },
+    "storybook": {
+      "executor": "@nx/storybook:storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "libs/web/components/.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@nx/storybook:build",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/web-components",
+        "configDir": "libs/web/components/.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "test-storybook -c libs/web/components/.storybook --url=http://localhost:4400"
+      }
+    },
+    "static-storybook": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "web-components:build-storybook",
+        "staticFilePath": "dist/storybook/web-components"
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "web-components:build-storybook:ci"
+        }
+      }
     }
   }
 }

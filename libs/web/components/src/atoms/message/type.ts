@@ -4,6 +4,6 @@ export type TMessage = DetailedHTMLProps<
   HTMLAttributes<HTMLSpanElement>,
   HTMLSpanElement
 > & {
-  variant?: 'primary' | 'secondary' | 'tertiary';
+  status?: 'error' | 'success' | 'warning' | 'none';
   size?: 'sm' | 'md' | 'lg';
 };

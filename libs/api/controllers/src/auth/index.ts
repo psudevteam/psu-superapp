@@ -4,6 +4,7 @@ import {
   registerService,
   refreshService,
 } from '@psu-superapp/api-services';
+
 export const registerContoller = async (req: Request, res: Response) => {
   const { statusCode, response } = await registerService(req.body);
   return res.status(statusCode).send({ ...response });
