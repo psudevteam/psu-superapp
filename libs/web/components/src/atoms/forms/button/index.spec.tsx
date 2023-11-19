@@ -49,7 +49,7 @@ describe('Test Button Functionality', () => {
   it('Should have children Loading... when loading props pass', () => {
     const onClickFn = jest.fn();
     const { getByTestId } = render(
-      <Button type="button" loading="true" onClick={onClickFn} />
+      <Button type="button" isLoading onClick={onClickFn} />
     );
     fireEvent.click(getByTestId('button'));
     expect(onClickFn).toHaveBeenCalled();

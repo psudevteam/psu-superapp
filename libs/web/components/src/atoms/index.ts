@@ -1,3 +1,2 @@
-export * from './text';
-export * from './message';
 export * from './forms';
+export * from './documents';
