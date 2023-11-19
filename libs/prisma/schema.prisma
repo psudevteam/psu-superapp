@@ -12,89 +12,89 @@ datasource db {
 }
 
 model Service {
-  id  String @unique @default(uuid())
-  name String
-  description String
-  price BigInt
-  tehcnician Technician @relation(fields: [tehcnicianId], references: [id])
-  tehcnicianId String @unique
-  createdAt DateTime @default(now())
-  updateAt DateTime
+  id           String     @unique @default(uuid())
+  name         String
+  description  String
+  price        BigInt
+  tehcnician   Technician @relation(fields: [tehcnicianId], references: [id])
+  tehcnicianId String     @unique
+  createdAt    DateTime   @default(now())
+  updateAt     DateTime
 }
 
 model Role {
-  id String @unique @default(uuid())
-  name String
+  id         Int              @unique @default(autoincrement())
+  name       String
   permission RolePermission[]
-  user User[]
-  createdAt DateTime @default(now())
-  updateAt DateTime
+  user       User[]
+  createdAt  DateTime         @default(now())
+  updateAt   DateTime
 }
 
 model RolePermission {
-  id String @unique @default(uuid())
-  role Role @relation(fields: [roleId], references: [id])
-  roleId String @unique
-  permission Permission @relation(fields: [permissionId], references: [id])
+  id           String     @unique @default(uuid())
+  role         Role       @relation(fields: [roleId], references: [id])
+  roleId       Int
+  permission   Permission @relation(fields: [permissionId], references: [id])
   permissionId String
-  createdAt DateTime @default(now())
-  updateAt DateTime
+  createdAt    DateTime   @default(now())
+  updateAt     DateTime
 }
 
 model Permission {
-  id String @unique @default(uuid())
-  name String
-  roles RolePermission[]
-  createdAt DateTime @default(now())
-  updateAt DateTime
+  id        String           @unique @default(uuid())
+  name      String
+  roles     RolePermission[]
+  createdAt DateTime         @default(now())
+  updateAt  DateTime
 }
 
 model User {
-  id String @unique @default(uuid())
-  fullname String
-  password String
-  email String
-  member Member?
+  id         String      @unique @default(uuid())
+  fullname   String
+  password   String
+  email      String      @unique
+  member     Member?
   technician Technician?
-  roles Role @relation(fields: [roleId], references: [id])
-  roleId String @unique
-  createdAt DateTime @default(now())
-  updateAt DateTime
+  roles      Role        @relation(fields: [roleId], references: [id])
+  roleId     Int
+  createdAt  DateTime    @default(now())
+  updateAt   DateTime    @default(now())
 }
 
 model Member {
-  id String @unique @default(uuid())
-  devices Device[]
-  user User @relation(fields: [userId], references: [id])
-  userId String @unique
-  services String
+  id        String   @unique @default(uuid())
+  devices   Device[]
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String   @unique
+  services  String
   createdAt DateTime @default(now())
-  updateAt DateTime
+  updateAt  DateTime
 }
 
 model Device {
-  id String @unique @default(uuid())
-  member Member @relation(fields: [memberId], references: [id])
+  id       String @unique @default(uuid())
+  member   Member @relation(fields: [memberId], references: [id])
   memberId String @unique
-  name String
-  type String
+  name     String
+  type     String
 }
 
 model Technician {
-  id String @unique @default(uuid())
-  services Service[]
-  order Order[]
-  user User @relation(fields: [userId], references: [id])
-  userId String @unique
-  createdAt DateTime @default(now())
-  updateAt DateTime
+  id        String    @unique @default(uuid())
+  services  Service[]
+  order     Order[]
+  user      User      @relation(fields: [userId], references: [id])
+  userId    String    @unique
+  createdAt DateTime  @default(now())
+  updateAt  DateTime
 }
 
 model Order {
-  id String @unique @default(uuid())
-  name String
-  technician Technician @relation(fields: [tehcnicianId], references: [id])
-  tehcnicianId String @unique
-  createdAt DateTime @default(now())
-  updateAt DateTime
+  id           String     @unique @default(uuid())
+  name         String
+  technician   Technician @relation(fields: [tehcnicianId], references: [id])
+  tehcnicianId String     @unique
+  createdAt    DateTime   @default(now())
+  updateAt     DateTime
 }

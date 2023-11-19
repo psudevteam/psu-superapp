@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  database:
+    container_name: psu
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: psu
+    ports:
+      - '5432:5432'
+volumes:
+  database:
+    driver: local

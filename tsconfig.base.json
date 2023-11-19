@@ -18,6 +18,8 @@
       "@psu-superapp/api-controllers": ["libs/api/controllers/src/index.ts"],
       "@psu-superapp/api-routes": ["libs/api/routes/src/index.ts"],
       "@psu-superapp/api-services": ["libs/api/services/src/index.ts"],
+      "@psu-superapp/api/guards": ["libs/api/guards/src/index.ts"],
+      "@psu-superapp/api/utils": ["libs/api/utils/src/index.ts"],
       "@psu-superapp/entities": ["libs/entities/src/index.ts"],
       "@psu-superapp/mobile-components": [
         "libs/mobile/components/src/index.ts"
@@ -26,6 +28,7 @@
       "@psu-superapp/mobile-routers": ["libs/mobile/routers/src/index.ts"],
       "@psu-superapp/mobile-services": ["libs/mobile/services/src/index.ts"],
       "@psu-superapp/mobile/components": ["mobile/components/src/index.ts"],
+      "@psu-superapp/models": ["libs/prisma/index.ts"],
       "@psu-superapp/web-components": ["libs/web/components/src/index.ts"],
       "@psu-superapp/web-components/server": [
         "libs/web/components/src/server.ts"
