@@ -1,5 +1,5 @@
 {
-  "name": "@psu-superapp/api/utils",
+  "name": "@psu-superapp/api/middlewares",
   "version": "0.0.1",
   "dependencies": {},
   "main": "./index.js",

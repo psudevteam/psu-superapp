@@ -4,7 +4,7 @@ import {
   loginController,
   refreshController,
 } from '@psu-superapp/api-controllers';
-import { verifyRefreshToken } from '@psu-superapp/api/guards';
+import { verifyRefreshToken } from '@psu-superapp/api/middlewares';
 export const auth = Router();
 
 auth.post('/register', registerContoller);

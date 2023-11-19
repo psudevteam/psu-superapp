@@ -4,7 +4,7 @@ import {
   encryptPassword,
   generateAccessToken,
   generateToken,
-} from '@psu-superapp/api/utils';
+} from '@psu-superapp/api/utilities';
 import {
   TGenerateToken,
   TLoginRequest,
