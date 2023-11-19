@@ -1,3 +1,6 @@
+import { JwtPayload } from 'jsonwebtoken';
+import { Request } from 'express';
+
 export type TRegisterRequest = TLoginRequest & {
   fullname: string;
 };
@@ -30,10 +33,14 @@ export type TRefreshTokenResponse = {
 
 export type TGenerateToken = {
   email: string;
-  id: string;
+  sub: string;
 };
 
 export type TGenerateTokenResponse = {
   access_token: string;
   refresh_token: string;
 };
+
+export interface TCustomRequest extends Request {
+  user: string | JwtPayload;
+}

@@ -1,5 +1,7 @@
 import * as jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
+import { TCustomRequest, TGenerateToken } from '@psu-superapp/entities';
+
 const refreshSecret: string = process.env['REFRESH_SECRET'] || '';
 
 export const verifyRefreshToken = async (
@@ -14,15 +16,11 @@ export const verifyRefreshToken = async (
         message: 'Invalid refresh token',
       });
     }
-    jwt.verify(refresh_token, refreshSecret, async (error, decoded) => {
-      if (error) {
-        return res.status(401).json({ message: 'Token tidak valid' });
-      } else {
-        next();
-      }
-    });
+    const decoded = jwt.verify(refresh_token, refreshSecret);
+    (req as TCustomRequest).user = decoded;
+
+    next();
   } catch (error) {
-    console.error('something wrong with auth middleware');
-    res.status(500).json({ message: 'Server Error' });
+    res.status(500).json({ message: error.message });
   }
 };

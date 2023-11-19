@@ -1,1 +1,1 @@
-export * from './lib/api-guards';
+export * from './rt.guard';
