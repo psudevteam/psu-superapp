@@ -1,6 +1,5 @@
 import { FC, ReactElement } from 'react';
 import { Label, Message } from '../../../atoms';
-import { BiErrorCircle, BiCheckCircle } from 'react-icons/bi';
 import { match } from 'ts-pattern';
 import { TFieldSet } from '@psu-superapp/entities';
 
@@ -77,27 +76,13 @@ export const Fieldset: FC<TFieldSet> = (props): ReactElement => {
       </section>
     ));
 
-  const statusIcon = match(status)
-    .with('error', () => <BiErrorCircle />)
-    .with('success', () => <BiCheckCircle />)
-    .with('warning', () => <BiErrorCircle />)
-    .with('none', () => null)
-    .exhaustive();
-
   return (
     <fieldset className="flex flex-col gap-y-2">
       {inputType}
       {props.message && status !== 'none' && (
-        <Message {...props}>
-          {statusIcon}
-          {props.message}
-        </Message>
+        <Message {...props}>{props.message}</Message>
       )}
-      {props?.hint && (
-        <span className="text-xs text-gray-400 mt-[-6px] italic">
-          *{props.hint}
-        </span>
-      )}
+      {props?.hint && <Message status={'none'}>*{props.hint}</Message>}
     </fieldset>
   );
 };
