@@ -11,7 +11,7 @@ const app = express();
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use(json());
 app.use('/api/auth', auth);
-app.get('/api', (req, res) => {
+app.get('/api', (_req, res) => {
   res.send({ message: 'Welcome to api!' });
 });
 

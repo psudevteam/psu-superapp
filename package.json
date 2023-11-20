@@ -35,6 +35,7 @@
     "argon2": "^0.31.2",
     "axios": "^1.0.0",
     "clsx": "^2.0.0",
+    "date-fns": "^2.30.0",
     "dotenv": "^16.3.1",
     "expo": "49.0.10",
     "expo-splash-screen": "~0.20.5",

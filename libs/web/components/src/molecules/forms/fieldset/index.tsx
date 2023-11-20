@@ -63,7 +63,7 @@ export const Fieldset: FC<TFieldSet> = (props): ReactElement => {
           </Label>
         )}
         {props?.preppend && (
-          <div className="flex items-center gap-x-2 absolute top-3 left-3">
+          <div className="flex items-center gap-x-2 absolute top-2 left-2">
             {props.preppend}
           </div>
         )}

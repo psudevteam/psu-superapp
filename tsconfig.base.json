@@ -35,6 +35,10 @@
       ],
       "@psu-superapp/web-modules": ["libs/web/modules/src/index.ts"],
       "@psu-superapp/web-modules/server": ["libs/web/modules/src/server.ts"],
+      "@psu-superapp/web-providers": ["libs/web/providers/src/index.ts"],
+      "@psu-superapp/web-providers/server": [
+        "libs/web/providers/src/server.ts"
+      ],
       "@psu-superapp/web-services": ["libs/web/services/src/index.ts"],
       "@psu-superapp/web-services/server": ["libs/web/services/src/server.ts"],
       "@psu-superapp/web-utils": ["libs/web/utils/src/index.ts"],
