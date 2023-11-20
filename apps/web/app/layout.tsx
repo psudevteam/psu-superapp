@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren, ReactElement } from 'react';
 import './global.css';
-import { QueryProvider } from '@psu-superapp/web-providers';
+import { QueryProvider } from '@psu-superapp/web-services';
 
 export const metadata = {
   title: 'PSU Superapp',
