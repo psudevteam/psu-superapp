@@ -214,6 +214,7 @@
 
               gnused
               bun
+              emmet-ls
               nodePackages.node-gyp-build
               nodePackages.npm
               nodePackages.pnpm

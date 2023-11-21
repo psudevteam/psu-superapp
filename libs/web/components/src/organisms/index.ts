@@ -1,2 +1,3 @@
 export * from './modal';
-export * from './datatable';
+export * from './tables';
+export * from './forms';

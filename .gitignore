@@ -134,3 +134,5 @@ cache/
 
 apps/mobile-e2e/artifacts
 .nx/cache
+apps/mobile/technician-e2e/artifacts
+apps/mobile/customer-e2e/artifacts
