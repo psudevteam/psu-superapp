@@ -6,6 +6,7 @@ import {
   generateToken,
 } from '@psu-superapp/api/utilities';
 import {
+  TCustomRequest,
   TGenerateToken,
   TLoginRequest,
   TRegisterRequest,
@@ -80,8 +81,8 @@ export const loginService = async (payload: TLoginRequest) => {
   };
 };
 
-export const refreshService = async (payload: TGenerateToken) => {
-  const { sub, email } = payload;
+export const refreshService = async (payload: TCustomRequest['user']) => {
+  const { sub, email } = payload as TGenerateToken;
   const accessToken = await generateAccessToken({ sub, email });
   if (!accessToken) {
     return {

@@ -7,7 +7,7 @@ const refreshSecret: string = process.env['REFRESH_SECRET'] || '';
 export const verifyRefreshToken = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
     const { refresh_token } = req.body;
@@ -17,10 +17,20 @@ export const verifyRefreshToken = async (
       });
     }
     const decoded = jwt.verify(refresh_token, refreshSecret);
-    (req as TCustomRequest).user = decoded;
+    (req as TCustomRequest).user = decoded as TGenerateToken;
 
-    next();
+    return next();
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    if (error instanceof jwt.TokenExpiredError) {
+      return res.status(401).json({
+        message: 'Refresh token expired',
+      });
+    }
+    if (error instanceof jwt.JsonWebTokenError) {
+      return res.status(401).json({
+        message: 'Invalid refresh token',
+      });
+    }
+    return res.status(500).json(error);
   }
 };

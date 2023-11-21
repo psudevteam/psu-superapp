@@ -14,7 +14,7 @@ auth.post('/login', validation(VSLogin), loginController);
 
 auth.post(
   '/refresh',
-  validation(VSRefresh),
+  // validation(VSRefresh),
   verifyRefreshToken,
-  refreshController
+  refreshController,
 );

@@ -42,5 +42,5 @@ export type TGenerateTokenResponse = {
 };
 
 export interface TCustomRequest extends Request {
-  user: string | JwtPayload;
+  user: TGenerateToken | JwtPayload;
 }
