@@ -1,3 +1,5 @@
+import { JwtPayload } from 'jsonwebtoken';
+import { Request } from 'express';
 import { AxiosError } from 'axios';
 
 export type TRegisterRequest = TLoginRequest & {
@@ -32,7 +34,7 @@ export type TRefreshTokenResponse = {
 
 export type TGenerateToken = {
   email: string;
-  id: string;
+  sub: string;
 };
 
 export type TGenerateTokenResponse = {
@@ -40,6 +42,9 @@ export type TGenerateTokenResponse = {
   refresh_token: string;
 };
 
+export interface TCustomRequest extends Request {
+  user: TGenerateToken | JwtPayload;
+}
 export type TMetaItem = {
   code: number;
   status: string;

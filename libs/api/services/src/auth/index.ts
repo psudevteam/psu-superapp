@@ -4,12 +4,14 @@ import {
   encryptPassword,
   generateAccessToken,
   generateToken,
-} from '@psu-superapp/api/utils';
+} from '@psu-superapp/api/utilities';
 import {
+  TCustomRequest,
   TGenerateToken,
   TLoginRequest,
   TRegisterRequest,
 } from '@psu-superapp/entities';
+
 const prisma = new PrismaClient();
 export const registerService = async (payload: TRegisterRequest) => {
   const { email, fullname, password } = payload;
@@ -53,10 +55,9 @@ export const registerService = async (payload: TRegisterRequest) => {
 export const loginService = async (payload: TLoginRequest) => {
   const { email, password } = payload;
   const getUser = await getUserByEmail({ email });
-  const isPasswordValid = await comparePassword(
-    password,
-    getUser?.password as string
-  );
+
+  const isPasswordValid =
+    !!getUser && (await comparePassword(password, getUser?.password as string));
 
   if (!getUser || !isPasswordValid) {
     return {
@@ -67,7 +68,7 @@ export const loginService = async (payload: TLoginRequest) => {
     };
   }
   const { access_token, refresh_token } = await generateToken({
-    id: getUser?.id,
+    sub: getUser?.id,
     email: getUser?.email,
   });
   return {
@@ -80,8 +81,9 @@ export const loginService = async (payload: TLoginRequest) => {
   };
 };
 
-export const refreshService = async (payload: TGenerateToken) => {
-  const accessToken = generateAccessToken(payload);
+export const refreshService = async (payload: TCustomRequest['user']) => {
+  const { sub, email } = payload as TGenerateToken;
+  const accessToken = await generateAccessToken({ sub, email });
   if (!accessToken) {
     return {
       statusCode: 400,

@@ -4,9 +4,9 @@ import * as jwt from 'jsonwebtoken';
 const refreshSecret: string = process.env['REFRESH_SECRET'] || '';
 const accessSecret: string = process.env['ACCESS_SECRET'] || '';
 export const generateAccessToken = async (
-  payload: TGenerateToken
+  payload: TGenerateToken,
 ): Promise<string> => {
-  const { id: sub, email } = payload;
+  const { sub, email } = payload;
   const access_token = await jwt.sign({ sub, email }, accessSecret, {
     expiresIn: '15m',
   });
@@ -15,13 +15,13 @@ export const generateAccessToken = async (
 };
 
 export const generateToken = async (
-  payload: TGenerateToken
+  payload: TGenerateToken,
 ): Promise<TGenerateTokenResponse> => {
-  const { id: sub, email } = payload;
+  const { sub, email } = payload;
   const [access_token, refresh_token] = await Promise.all([
     generateAccessToken(payload),
     jwt.sign({ sub, email }, refreshSecret, {
-      expiresIn: '1h',
+      expiresIn: '1m',
     }),
   ]);
 

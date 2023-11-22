@@ -1,0 +1,32 @@
+name: Testing
+on:
+  pull_request:
+    types: [opened]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          node-version: 18
+      - run: yarn install
+      - run: yarn run nx run-many --target=lint --all
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          node-version: 18
+      - run: yarn install
+      - run: yarn prisma generate
+      - run: yarn run nx run-many --target=build ---all
+
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          node-version: 18
+      - run: yarn install
+      - run: yarn run nx run-many ---all
